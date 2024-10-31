@@ -24,7 +24,14 @@ pipeline {
             steps {
                 sh'''
                     echo "Test stage"
+                    if test -f "build/index.html";then
+                        echo "index.html file exists"
+                    else
+                        echo "index.html file does not exists"
+                        exit 1
+                    fi
                 '''
+                sh 'npm test'
             }
         }
     }
